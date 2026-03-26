@@ -310,7 +310,7 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
         %tt2p2 = arith.addi %tt2p1, %SS1 : i32
         %TT2 = arith.addi %tt2p2, %wj : i32
 
-        // 更新寄存器（直接计算所需新值）
+        // 更新寄存器
         %new_C = func.call @rotl(%B_r, %c9_i32) : (i32,i32)->i32
         %new_G = func.call @rotl(%F_r, %c19_i32) : (i32,i32)->i32
         %new_E = func.call @P0(%TT2) : (i32)->i32
