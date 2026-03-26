@@ -349,11 +349,11 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %b1_A_trunc = arith.trunci %b1_A : i32 to i8
     %b2_A = arith.shrui %final#0, %c8_i32 : i32
     %b2_A_trunc = arith.trunci %b2_A : i32 to i8
-    %b3_A = arith.trunci %final#0 : i32 to i8   // 直接得到 i8
+    %b3_A = arith.trunci %final#0 : i32 to i8  
     memref.store %b0_A_trunc, %output[%c0_out] : memref<32xi8>
     memref.store %b1_A_trunc, %output[%c1_out] : memref<32xi8>
     memref.store %b2_A_trunc, %output[%c2_out] : memref<32xi8>
-    memref.store %b3_A, %output[%c3_out] : memref<32xi8>   // 使用 %b3_A
+    memref.store %b3_A, %output[%c3_out] : memref<32xi8>  
 
     // B
     %b0_B = arith.shrui %final#1, %c24_i32 : i32
