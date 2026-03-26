@@ -8,3 +8,4 @@ GMCompilerFramework 致力于构建一个基于 MLIR 的国密算法（SM2 / SM9
 
 本项目在 MLIR 中 定义国密算法方言（Dialect），将普通算术 IR 转换为国密算子，中间层获得算法语义后，编译器可以进一步进行领域特定优化
 
+add sm3 algorithm
