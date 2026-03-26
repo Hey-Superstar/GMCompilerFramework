@@ -64,7 +64,7 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %xor1 = arith.xori %x, %y : i32
     %xor2 = arith.xori %xor1, %z : i32
     // j >= 16 : (X&Y)|(~X&Z)
-    %minus1 = arith.constant -1 : i32               // 全1用于取反
+    %minus1 = arith.constant -1 : i32             
     %not_x = arith.xori %x, %minus1 : i32
     %and_xy = arith.andi %x, %y : i32
     %and_notx_z = arith.andi %not_x, %z : i32
@@ -72,9 +72,7 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %result = arith.select %cmp, %xor2, %or : i32
     return %result : i32
   }
-  // 主函数 SM3
   func.func @sm3(%input: memref<?xi8>, %input_len: i64, %output: memref<32xi8>) {
-    // 常量定义
     %c0 = arith.constant 0 : i64
     %c1 = arith.constant 1 : i64
     %c4 = arith.constant 4 : i64
@@ -104,7 +102,6 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %c511 = arith.constant 511 : i64
     %c72 = arith.constant 72 : i64
 
-    // index 类型常量
     %c0_idx = arith.constant 0 : index
     %c1_idx = arith.constant 1 : index
     %c2_idx = arith.constant 2 : index
@@ -128,7 +125,6 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %c64_idx = arith.constant 64 : index
     %c68_idx = arith.constant 68 : index
 
-    // 初始向量 IV
     %A_iv = arith.constant 0x7380166f : i32
     %B_iv = arith.constant 0x4914b2b9 : i32
     %C_iv = arith.constant 0x172442d7 : i32
@@ -138,7 +134,6 @@ func.func @rotl(%x: i32, %n: i32) -> i32 {
     %G_iv = arith.constant 0xe38dee4d : i32
     %H_iv = arith.constant 0xb0fb0e4e : i32
 
-    // 常数 T_j
     %T_low = arith.constant 0x79cc4519 : i32
     %T_high = arith.constant 0x7a879d8a : i32
 
